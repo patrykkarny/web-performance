@@ -5,12 +5,15 @@ const {
 
  const elements = Array.from(document.querySelectorAll('.element'));
 
- registerNextClick(function (timestamp) {
+registerNextClick(function (timestamp) {
   elements.forEach((element, index) => {
-    const top = element.offsetTop;
-    const nextPosition = +((Math.sin(top + timestamp/1000) + 1) / 2 * containerWidth);
-    requestAnimationFrame(() => {
-      element.style.transform = `translateX(${nextPosition}px)`;
+    fastdom.measure(() => {
+      const top = element.offsetTop;
+      const nextPosition = +((Math.sin(top + timestamp/1000) + 1) / 2 * containerWidth);
+      fastdom.mutate(() => {
+        element.style.transform = `translateX(${nextPosition}px)`;
+      });
     });
   });
  });
+ 
