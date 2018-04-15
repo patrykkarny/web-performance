@@ -5,7 +5,27 @@ const { performance } = require('perf_hooks');
 // let iterations = 1e7;
 let iterations = 100000;
 
-const objects = [{ a: 1, b: 4 }, { a: 2, c: 5, b: 10 }, { a: 3 }, { a: 4, b: 2 }];
+class Point {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+}
+
+const test = () => {
+  // class Point {
+  //   constructor(x, y) {
+  //     this.x = x;
+  //     this.y = y;
+  //   }
+  // }
+
+  const add = point => point.x + point.y;
+
+  const point = new Point(10, 20);
+
+  add(point);
+};
 
 // 🔚 SETUP
 
@@ -14,9 +34,7 @@ performance.mark('start');
 // EXERCISE 💪
 
 while (iterations--) {
-  let sum = 0;
-  const obj = objects[iterations & 3];
-  sum = sum + obj.a;
+  test();
 }
 
 // 🔚 EXERCISE
