@@ -5,27 +5,8 @@ const { performance } = require('perf_hooks');
 // let iterations = 1e7;
 let iterations = 100000;
 
-class Point {
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
-  }
-}
-
-const test = () => {
-  // class Point {
-  //   constructor(x, y) {
-  //     this.x = x;
-  //     this.y = y;
-  //   }
-  // }
-
-  const add = point => point.x + point.y;
-
-  const point = new Point(10, 20);
-
-  add(point);
-};
+const square = x => x * x;
+const sumOfSquares = (a, b) => square(a) + square(b);
 
 // 🔚 SETUP
 
@@ -34,7 +15,7 @@ performance.mark('start');
 // EXERCISE 💪
 
 while (iterations--) {
-  test();
+  sumOfSquares(iterations, iterations + 1);
 }
 
 // 🔚 EXERCISE
